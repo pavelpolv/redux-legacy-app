@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { Table, type TableColumnsType } from 'antd';
 import { useReportParams } from '../hooks';
 import type { Report } from '../types';
-import { buildExportRequest, getLastQuarters } from '../utils';
+import { buildExportRequest, getPreviousQuarters } from '../utils';
 import { ReportDownloadButton } from './ReportDownloadButton';
 import { ReportParamsCell } from './ReportParamsCell';
 
-const QUARTERS_COUNT = 6;
+const QUARTERS_COUNT = 9;
 
 interface Props {
   reports: Report[];
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const ReportTable = ({ reports, loading }: Props) => {
-  const quarters = useMemo(() => getLastQuarters(QUARTERS_COUNT), []);
+  const quarters = useMemo(() => getPreviousQuarters(QUARTERS_COUNT), []);
   const { getParams, updateParams } = useReportParams();
 
   const columns: TableColumnsType<Report> = [

@@ -16,5 +16,7 @@ const toQuarter = (date: Dayjs): Quarter => {
   };
 };
 
-export const getLastQuarters = (count: number, now: Dayjs = dayjs()): Quarter[] =>
-  Array.from({ length: count }, (_, i) => toQuarter(now.startOf('month').subtract(i * 3, 'month')));
+export const getPreviousQuarters = (count: number, now: Dayjs = dayjs()): Quarter[] =>
+  Array.from({ length: count }, (_, i) =>
+    toQuarter(now.startOf('month').subtract((i + 1) * 3, 'month')),
+  );
